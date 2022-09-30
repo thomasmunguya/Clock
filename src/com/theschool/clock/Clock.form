@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.theschool.clock.Clock">
+  <grid id="27dc6" binding="mainJPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="38fb0" class="javax.swing.JButton" binding="timerButton" default-binding="true">
+        <constraints/>
+        <properties>
+          <text value="Timer"/>
+        </properties>
+      </component>
+      <component id="ea26f" class="javax.swing.JButton" binding="exitButton" default-binding="true">
+        <constraints/>
+        <properties>
+          <text value="Exit"/>
+        </properties>
+      </component>
+      <component id="bb600" class="javax.swing.JButton" binding="stopwatchButton" default-binding="true">
+        <constraints/>
+        <properties>
+          <text value="Stopwatch"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
