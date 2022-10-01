@@ -3,4 +3,8 @@ Clock app with timer and stopwatch written in Swing.
 
 # Class Diagram
 
-![Class Diagram tag](https://github.com/thomasmunguya/Clock/blob/main/src/class_diagram.png)
+![Class Diagram tag](https://github.com/thomasmunguya/Clock/blob/main/class_diagram.png)
+
+# Demo Video
+
+https://github.com/thomasmunguya/Clock/blob/main/src/demo.mp4
