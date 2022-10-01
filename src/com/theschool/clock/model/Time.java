@@ -39,6 +39,9 @@ public class Time {
      * @param second the second.
      */
     public Time(int hour, int minute, int second) {
+        validateEntry(hour, "hour");
+        validateEntry(minute, "minute");
+        validateEntry(second, "second");
         adjustTime(hour, minute, second);
     }
 
@@ -55,6 +58,7 @@ public class Time {
      * @param hour the hour.
      */
     public void setHour(int hour) {
+        validateEntry(hour, "hour");
         this.hour = hour;
     }
 
@@ -71,6 +75,7 @@ public class Time {
      * @param minute the minute.
      */
     public void setMinute(int minute) {
+        validateEntry(minute, "minute");
         this.minute = minute;
     }
 
@@ -87,6 +92,7 @@ public class Time {
      * @param second the second.
      */
     public void setSecond(int second) {
+        validateEntry(second, "second");
         this.second = second;
     }
 
@@ -96,6 +102,10 @@ public class Time {
      * @return the result of adding {@code t} to this time.
      */
     public Time add(Time t) {
+        if(t == null) {
+            throw new IllegalArgumentException("Time argument cannot be null.");
+        }
+
         // add the hours
         int resultHour = getHour() + t.getHour();
 
@@ -128,6 +138,10 @@ public class Time {
      * @return the result of adding {@code t} to this time.
      */
     public Time subtract(Time t) {
+        if(t == null) {
+            throw new IllegalArgumentException("Time argument cannot be null.");
+        }
+
         // subtract the hours
         int resultHour = getHour() - t.getHour();
 
@@ -218,5 +232,16 @@ public class Time {
     @Override
     public int hashCode() {
         return Objects.hash(hour, minute, second);
+    }
+
+    /**
+     * Validates a value entered for an hour, minute or second.
+     * @param value the value.
+     * @param entry the name of the entry, e.g hour.
+     */
+    private void validateEntry(int value, String entry) {
+        if(value < 0) {
+            throw new IllegalArgumentException("Invalid value provided for " + entry + ".");
+        }
     }
 }
