@@ -31,7 +31,7 @@ public class Stopwatch extends Timeable implements Runnable {
     /**
      * Counts the time up.
      */
-    public void countUp() {
+    private void countUp() {
         time = time.add(new Time(0, 0, 1));
         component.setText(time.toString());
 
