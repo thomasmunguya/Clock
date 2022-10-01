@@ -4,8 +4,7 @@ package com.theschool.clock;
 import com.theschool.clock.gui.StopwatchGUI;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.event.*;
 
 /**
  * The {@code Clock} class represents the entry point for the clock application.
@@ -58,6 +57,8 @@ public class Clock {
 
     public static void main(String[] args) {
 
+        clock.registerButtonEventHandlers();
+
         FlowLayout flowLayout = new FlowLayout(FlowLayout.CENTER);
         flowLayout.setHgap(20);
         JPanel startStopButtonsPanel = new JPanel(flowLayout);
@@ -87,14 +88,39 @@ public class Clock {
     }
 
     /**
+     * Registers button event handlers.
+     */
+    private void registerButtonEventHandlers() {
+        clock.stopwatchButton.addActionListener((e) -> {
+            if(stopwatchGUI == null) {
+                stopwatchGUI = new StopwatchGUI();
+
+                stopwatchJFrame = new JFrame();
+                stopwatchJFrame.setContentPane(stopwatchGUI);
+                stopwatchJFrame.setSize(335, 455);
+                stopwatchJFrame.setTitle("Stopwatch");
+                stopwatchJFrame.setResizable(false);
+                stopwatchJFrame.addWindowListener(new StopwatchWindowListener());
+                stopwatchJFrame.setVisible(true);
+            }
+            else {
+                stopwatchJFrame.requestFocus();
+            }
+        });
+
+        clock.exitButton.addActionListener((e) -> {
+            mainJFrame.dispose();
+            System.exit(0);
+        });
+    }
+
+    /**
      * A listener for the stopwatch window.
      */
     private static class StopwatchWindowListener implements WindowListener {
 
         @Override
-        public void windowOpened(WindowEvent e) {
-
-        }
+        public void windowOpened(WindowEvent e) {}
 
         @Override
         public void windowClosing(WindowEvent e) {
