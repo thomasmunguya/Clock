@@ -4,6 +4,8 @@ package com.theschool.clock;
 import com.theschool.clock.gui.StopwatchGUI;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 /**
  * The {@code Clock} class represents the entry point for the clock application.
@@ -82,5 +84,37 @@ public class Clock {
         mainJFrame.setSize(240, 135);
         mainJFrame.setResizable(false);
         mainJFrame.setVisible(true);
+    }
+
+    /**
+     * A listener for the stopwatch window.
+     */
+    private static class StopwatchWindowListener implements WindowListener {
+
+        @Override
+        public void windowOpened(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowClosing(WindowEvent e) {
+            stopwatchGUI = null;
+            stopwatchJFrame.dispose();
+        }
+
+        @Override
+        public void windowClosed(WindowEvent e) {}
+
+        @Override
+        public void windowIconified(WindowEvent e) {}
+
+        @Override
+        public void windowDeiconified(WindowEvent e) {}
+
+        @Override
+        public void windowActivated(WindowEvent e) {}
+
+        @Override
+        public void windowDeactivated(WindowEvent e) {}
     }
 }
