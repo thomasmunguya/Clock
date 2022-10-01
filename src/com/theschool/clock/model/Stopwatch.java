@@ -32,7 +32,14 @@ public class Stopwatch extends Timeable implements Runnable {
      * Counts the time up.
      */
     public void countUp() {
-        throw new UnsupportedOperationException();
+        time = time.add(new Time(0, 0, 1));
+        component.setText(time.toString());
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -40,11 +47,15 @@ public class Stopwatch extends Timeable implements Runnable {
      */
     @Override
     public void reset() {
-        throw new UnsupportedOperationException();
+        time = new Time();
+        component.setText(time.toString());
+        setRunning(false);
     }
 
     @Override
     public void run() {
-        throw new UnsupportedOperationException();
+        while(isRunning()) {
+            countUp();
+        }
     }
 }
