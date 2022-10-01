@@ -9,6 +9,8 @@ import javax.swing.text.JTextComponent;
  *
  *  @see Time
  *  @see Timeable
+ *
+ * @author Thomas Munguya
  */
 public class Timer extends Timeable implements Runnable {
     /**
@@ -31,6 +33,7 @@ public class Timer extends Timeable implements Runnable {
     /**
      * Constructs a {@code Timer} with the provided time.
      * @param time the time associated with this Timer.
+     * @throws IllegalArgumentException if {@code time} is {@code null}.
      */
     public Timer(Time time) {
         super(time);
@@ -41,7 +44,8 @@ public class Timer extends Timeable implements Runnable {
      * Constructs a {@code Timer} with the provided arguments.
      * @param time the time associated with this time.
      * @param running the running state of the timer.
-     * @param component the component to write the time to.               
+     * @param component the component to write the time to.
+     * @throws IllegalArgumentException if {@code component} or {@code time} is {@code null}.
      */
     public Timer(Time time, boolean running, JTextComponent component) {
         super(time, running, component);
