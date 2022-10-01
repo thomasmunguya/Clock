@@ -7,4 +7,4 @@ Clock app with timer and stopwatch written in Swing.
 
 # Demo Video
 
-https://github.com/thomasmunguya/Clock/blob/main/src/demo.mp4
+![Demo video]https://github.com/thomasmunguya/Clock/blob/main/src/demo.mp4
