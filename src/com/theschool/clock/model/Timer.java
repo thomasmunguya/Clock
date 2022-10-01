@@ -51,8 +51,15 @@ public class Timer extends Timeable implements Runnable {
     /**
      * Counts down the time.
      */
-    public void countDown() {
-        throw new UnsupportedOperationException();
+    private void countDown() {
+        time = time.subtract(new Time(0, 0, 1));
+        component.setText(time.toString());
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -60,11 +67,23 @@ public class Timer extends Timeable implements Runnable {
      */
     @Override
     public void reset() {
-       throw new UnsupportedOperationException();
+        time = originalTime;
+        component.setText(time.toString());
     }
 
     @Override
     public void run() {
-       throw new UnsupportedOperationException();
+        while(isRunning()) {
+            // if the timer reaches the default time (00:00:00), the stop it.
+            if(time.equals(DEFAULT_TIME)) {
+                setRunning(false);
+                component.setText(DEFAULT_TIME.toString());
+                return;
+            }
+            countDown();
+        }
+        if(!component.getText().equals(time.toString())) {
+            component.setText(time.toString());
+        }
     }
 }
