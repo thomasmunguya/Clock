@@ -1,9 +1,6 @@
 package com.theschool.clock;
 
-
-import com.theschool.clock.gui.StopwatchGUI;
-import com.theschool.clock.gui.TimerGUI;
-
+import com.theschool.clock.gui.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -123,6 +120,23 @@ public class Clock {
         clock.exitButton.addActionListener((e) -> {
             mainJFrame.dispose();
             System.exit(0);
+        });
+
+        clock.timerButton.addActionListener((e) -> {
+            if(timerGUI == null) {
+                timerGUI = new TimerGUI();
+
+                timerJFrame = new JFrame();
+                timerJFrame.setContentPane(timerGUI);
+                timerJFrame.setSize(345, 200);
+                timerJFrame.setTitle("Timer");
+                timerJFrame.setResizable(false);
+                timerJFrame.addWindowListener(new TimerWindowListener());
+                timerJFrame.setVisible(true);
+            }
+            else {
+                timerGUI.requestFocus();
+            }
         });
     }
 
