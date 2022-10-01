@@ -7,6 +7,8 @@ import java.awt.event.*;
 
 /**
  * The {@code Clock} class represents the entry point for the clock application.
+ *
+ * @author Thomas Munguya
  */
 public class Clock {
     /**

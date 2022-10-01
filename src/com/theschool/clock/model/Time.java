@@ -8,6 +8,8 @@ import java.util.Objects;
  * @see Timeable
  * @see Stopwatch
  * @see Timer
+ *
+ * @author Thomas Munguya.
  */
 public class Time {
 
@@ -37,8 +39,12 @@ public class Time {
      * @param hour the hour.
      * @param minute the minute.
      * @param second the second.
+     * @throws IllegalArgumentException if any of the provided arguments is less than zero.
      */
     public Time(int hour, int minute, int second) {
+        validateEntry(hour, "hour");
+        validateEntry(minute, "minute");
+        validateEntry(second, "second");
         adjustTime(hour, minute, second);
     }
 
@@ -53,8 +59,10 @@ public class Time {
     /**
      * Sets the hour of the time.
      * @param hour the hour.
+     * @throws IllegalArgumentException if {@code hour} is less than zero.
      */
     public void setHour(int hour) {
+        validateEntry(hour, "hour");
         this.hour = hour;
     }
 
@@ -69,8 +77,10 @@ public class Time {
     /**
      * Sets the minute of the time.
      * @param minute the minute.
+     * @throws IllegalArgumentException if {@code minute} is less than zero.
      */
     public void setMinute(int minute) {
+        validateEntry(minute, "minute");
         this.minute = minute;
     }
 
@@ -85,8 +95,10 @@ public class Time {
     /**
      * Sets the second of the time.
      * @param second the second.
+     * @throws IllegalArgumentException if {@code second} is less than zero.
      */
     public void setSecond(int second) {
+        validateEntry(second, "second");
         this.second = second;
     }
 
@@ -94,8 +106,13 @@ public class Time {
      * Adds {@code t} to this time.
      * @param t the time to add to this time.
      * @return the result of adding {@code t} to this time.
+     * @throws IllegalArgumentException if {@code t} is {@code null}.
      */
     public Time add(Time t) {
+        if(t == null) {
+            throw new IllegalArgumentException("Time argument cannot be null.");
+        }
+
         // add the hours
         int resultHour = getHour() + t.getHour();
 
@@ -126,8 +143,13 @@ public class Time {
      * Subtracts {@code t} from this time.
      * @param t the time to add to this time.
      * @return the result of adding {@code t} to this time.
+     * @throws IllegalArgumentException if {@code t} is {@code null}.
      */
     public Time subtract(Time t) {
+        if(t == null) {
+            throw new IllegalArgumentException("Time argument cannot be null.");
+        }
+
         // subtract the hours
         int resultHour = getHour() - t.getHour();
 
@@ -218,5 +240,17 @@ public class Time {
     @Override
     public int hashCode() {
         return Objects.hash(hour, minute, second);
+    }
+
+    /**
+     * Validates a value entered for an hour, minute or second.
+     * @param value the value.
+     * @param entry the name of the entry, e.g hour.
+     * @throws IllegalArgumentException if {@code value} is less than zero.
+     */
+    private void validateEntry(int value, String entry) {
+        if(value < 0) {
+            throw new IllegalArgumentException("Invalid value provided for " + entry + ".");
+        }
     }
 }

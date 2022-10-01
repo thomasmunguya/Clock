@@ -4,6 +4,8 @@ import javax.swing.text.JTextComponent;
 
 /**
  * The {@code Timeable} class is the superclass of all entities that are timeable.
+ *
+ * @author Thomas Munguya
  */
 public abstract class Timeable {
     /**
@@ -31,8 +33,12 @@ public abstract class Timeable {
     /**
      * Constructs a {@code Timeable} with the provided time.
      * @param time the time associated with this Timeable.
+     * @throws IllegalArgumentException if {@code time} is {@code null}.
      */
     public Timeable(Time time) {
+        if(time == null) {
+            throw new IllegalArgumentException("Time argument cannot be null.");
+        }
         this.time = time;
     }
 
@@ -40,8 +46,12 @@ public abstract class Timeable {
      * Constructs a {@code Timeable} with the provided arguments.
      * @param running the running state of this Timeable.
      * @param component the component to write the time to.
+     * @throws IllegalArgumentException if {@code component} is {@code null}.
      */
     public Timeable(boolean running, JTextComponent component) {
+        if(component == null) {
+            throw new IllegalArgumentException("Component argument cannot be null.");
+        }
         this.running = running;
         this.component = component;
         this.time = new Time();
@@ -53,8 +63,15 @@ public abstract class Timeable {
      * @param time the time associated with this Timeable.
      * @param running the running state of this Timeable.
      * @param component the component to write the time to.
+     * @throws IllegalArgumentException if {@code component} or {@code time} is {@code null}.
      */
     public Timeable(Time time, boolean running, JTextComponent component) {
+        if(component == null) {
+            throw new IllegalArgumentException("Component argument cannot be null.");
+        }
+        if(time == null) {
+            throw new IllegalArgumentException("Time argument cannot be null.");
+        }
         this.time = time;
         this.running = running;
         this.component = component;
@@ -71,8 +88,12 @@ public abstract class Timeable {
     /**
      * Sets the time.
      * @param t the new time.
+     * @throws IllegalArgumentException if {@code t} is {@code null}.
      */
     public void setTime(Time t) {
+        if(t == null) {
+            throw new IllegalArgumentException("Time argument cannot be null.");
+        }
         time = t;
     }
 

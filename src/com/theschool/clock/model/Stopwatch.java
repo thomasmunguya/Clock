@@ -9,6 +9,8 @@ import javax.swing.text.JTextComponent;
  *
  * @see Time
  * @see Timeable
+ *
+ * @author Thomas Munguya
  */
 public class Stopwatch extends Timeable implements Runnable {
 
@@ -22,7 +24,8 @@ public class Stopwatch extends Timeable implements Runnable {
     /**
      * Constructs a {@code Stopwatch} with the provided arguments.
      * @param running the running state of this stopwatch.
-     * @param component the component to write the time to.                
+     * @param component the component to write the time to.
+     * @throws IllegalArgumentException if {@code component} is {@code null}.
      */
     public Stopwatch(boolean running, JTextComponent component) {
         super(running, component);
@@ -31,7 +34,7 @@ public class Stopwatch extends Timeable implements Runnable {
     /**
      * Counts the time up.
      */
-    public void countUp() {
+    private void countUp() {
         time = time.add(new Time(0, 0, 1));
         component.setText(time.toString());
 
