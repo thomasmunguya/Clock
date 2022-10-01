@@ -1,7 +1,6 @@
 package com.theschool.clock;
 
-
-import com.theschool.clock.gui.StopwatchGUI;
+import com.theschool.clock.gui.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -39,6 +38,16 @@ public class Clock {
      * Defines the JFrame for the stopwatch.
      */
     private static JFrame stopwatchJFrame;
+
+    /**
+     * Defines the graphical user interface for the timer.
+     */
+    private static TimerGUI timerGUI;
+
+    /**
+     * Defines the JFrame for the timer.
+     */
+    private static JFrame timerJFrame;
 
     /**
      * Defines the dimensions of the screen.
@@ -112,6 +121,23 @@ public class Clock {
             mainJFrame.dispose();
             System.exit(0);
         });
+
+        clock.timerButton.addActionListener((e) -> {
+            if(timerGUI == null) {
+                timerGUI = new TimerGUI();
+
+                timerJFrame = new JFrame();
+                timerJFrame.setContentPane(timerGUI);
+                timerJFrame.setSize(345, 200);
+                timerJFrame.setTitle("Timer");
+                timerJFrame.setResizable(false);
+                timerJFrame.addWindowListener(new TimerWindowListener());
+                timerJFrame.setVisible(true);
+            }
+            else {
+                timerGUI.requestFocus();
+            }
+        });
     }
 
     /**
@@ -126,6 +152,36 @@ public class Clock {
         public void windowClosing(WindowEvent e) {
             stopwatchGUI = null;
             stopwatchJFrame.dispose();
+        }
+
+        @Override
+        public void windowClosed(WindowEvent e) {}
+
+        @Override
+        public void windowIconified(WindowEvent e) {}
+
+        @Override
+        public void windowDeiconified(WindowEvent e) {}
+
+        @Override
+        public void windowActivated(WindowEvent e) {}
+
+        @Override
+        public void windowDeactivated(WindowEvent e) {}
+    }
+
+    /**
+     * A listener for the timer window.
+     */
+    private static class TimerWindowListener implements WindowListener {
+
+        @Override
+        public void windowOpened(WindowEvent e) { }
+
+        @Override
+        public void windowClosing(WindowEvent e) {
+            timerGUI = null;
+            timerJFrame.dispose();
         }
 
         @Override
